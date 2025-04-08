@@ -45,11 +45,10 @@ class DebitCardTest {
 
     @Test
     void shouldTestV1() {
-        List<WebElement> elements = driver.findElements(By.className("input__control"));
-        elements.get(0).sendKeys("Иванов Иван");
-        elements.get(1).sendKeys("+79270000000");
-        driver.findElement(By.className("checkbox__box")).click();
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
+        driver.findElement(By.cssSelector("[data-test-id=phone'] input")).sendKeys("+79015648749");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button")).click();
         WebElement resultElements = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
         assertTrue(resultElements.isDisplayed());
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", resultElements.getText().trim());
