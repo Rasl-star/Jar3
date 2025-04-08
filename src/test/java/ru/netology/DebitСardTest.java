@@ -17,6 +17,7 @@ import java.time.Duration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DebitCardTest {
     private WebDriver driver;
@@ -49,13 +50,8 @@ class DebitCardTest {
         elements.get(1).sendKeys("+79270000000");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button")).click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement successMessage = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.className("alert-success"))
-        );
-
-        String text = successMessage.getText();
-        assertEquals("Ваша заявка успешно отправлена!", text.trim());
+        WebElement resultElements = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
+        assertTrue(resultElements.isDisplayed());
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", resultElements.getText().trim());
     }
 }
