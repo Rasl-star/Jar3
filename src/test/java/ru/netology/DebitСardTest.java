@@ -46,7 +46,7 @@ class DebitCardTest {
     @Test
     void shouldTestV1() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
-        driver.findElement(By.cssSelector("[data-test-id=phone'] input")).sendKeys("+79015648749");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79015648749");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button")).click();
         WebElement resultElements = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
